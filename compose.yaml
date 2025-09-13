@@ -1,0 +1,14 @@
+services:
+  beancount:
+    build:
+      context: ./beancount
+    environment:
+      - DATA_DIR=${DATA_DIR}
+      - PORT=${PORT:-5000}
+      - BUSINESS_NAME=${BUSINESS_NAME:-My Business}
+      - CURRENCY=${CURRENCY:-NPR}
+    restart: on-failure
+    volumes:
+      - ${DATA_DIR}:/app/data
+    ports:
+      - "${PORT:-5000}:${PORT:-5000}"
