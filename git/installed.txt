@@ -1,0 +1,4 @@
+fastapi==x.x.x
+jinja2==a.b.c
+beancount==3.1.0
+python-multipart

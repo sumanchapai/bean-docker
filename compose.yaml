@@ -1,7 +1,7 @@
 services:
-  beancount:
+  fava:
     build:
-      context: ./beancount
+      context: ./fava
     environment:
       - DATA_DIR=${DATA_DIR}
       - PORT=${PORT:-5000}
@@ -12,3 +12,10 @@ services:
       - ${DATA_DIR}:/app/data
     ports:
       - "${PORT:-5000}:${PORT:-5000}"
+
+  git:
+    build:
+      context: ./git
+    environment:
+      - DATA_DIR=${DATA_DIR}
+      - PORT=${GIT_PORT:-5000}

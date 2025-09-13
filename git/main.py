@@ -1,8 +1,15 @@
+# TODO:
+# 1. Fix white screen after uploading document
+# 2. After running git commands and things like that, takes to /git page,
+# refreshing which we get Method not allowed error.
+
 import os
 import shutil
 import subprocess
 from datetime import datetime
 
+from beancount.core.data import Open
+from beancount.loader import load_file
 from fastapi import FastAPI, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -13,13 +20,21 @@ MAX_FILE_SIZE = 2 * 1024 * 1024  # 5 MB
 
 # --- Config ---
 # TODO: use env for DATA_DIR
-DATA_DIR = "../../data"
+DATA_DIR = os.getenv("DATA_DIR")
+if not DATA_DIR:
+    raise Exception("data dir not defined")
 DOCS_DIR = os.path.join(DATA_DIR, "documents")
 BEAN_FILE = os.path.join(DATA_DIR, "main.beancount")
 os.makedirs(DOCS_DIR, exist_ok=True)
 
-# Dummy accounts (replace with parsed beancount accounts if you want)
-ACCOUNTS = ["Assets:Cash", "Liabilities:CreditCard", "Expenses:Food"]
+
+def get_accounts():
+    try:
+        entries, _, _ = load_file(BEAN_FILE)
+        return sorted([entry.account for entry in entries if isinstance(entry, Open)])
+    except Exception:
+        return []
+
 
 # --- App setup ---
 app = FastAPI()
@@ -48,7 +63,7 @@ async def index(
         "index.html",
         {
             "request": request,
-            "accounts": ACCOUNTS,
+            "accounts": get_accounts(),
             "message": message,
             "result": result,
             "diff": diff,
@@ -73,7 +88,7 @@ async def upload_file(
             "index.html",
             {
                 "request": request,
-                "accounts": ACCOUNTS,
+                "accounts": get_accounts(),
                 "message": f"❌ Upload failed: {file.filename} is larger than 5MB",
                 "result": None,
                 "diff": None,
@@ -99,7 +114,7 @@ async def git_command(request: Request, command: str = Form(...)):
         "index.html",
         {
             "request": request,
-            "accounts": ACCOUNTS,
+            "accounts": get_accounts(),
             "message": None,
             "result": output,
             "diff": diff,
@@ -118,7 +133,7 @@ async def git_commit(
         "index.html",
         {
             "request": request,
-            "accounts": ACCOUNTS,
+            "accounts": get_accounts(),
             "message": "Committed changes" if "error" not in output.lower() else None,
             "result": output,
             "diff": diff,
