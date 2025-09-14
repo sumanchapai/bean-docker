@@ -19,10 +19,7 @@ MAX_FILE_SIZE = 2 * 1024 * 1024  # 5 MB
 
 
 # --- Config ---
-# TODO: use env for DATA_DIR
-DATA_DIR = os.getenv("DATA_DIR")
-if not DATA_DIR:
-    raise Exception("data dir not defined")
+DATA_DIR = "/data"
 DOCS_DIR = os.path.join(DATA_DIR, "documents")
 BEAN_FILE = os.path.join(DATA_DIR, "main.beancount")
 os.makedirs(DOCS_DIR, exist_ok=True)
