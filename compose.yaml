@@ -1,35 +1,42 @@
 services:
   fava:
+    restart: always
     build:
       context: ./fava
-    ports:
-      - 5001:5001
     environment:
       - DATA_DIR=${DATA_DIR}
       - BUSINESS_NAME=${BUSINESS_NAME:-My Business}
-    restart: always
     volumes:
       - ${DATA_DIR}:/app/data
 
   git:
-    build:
-      context: ./git
-    environment:
-      - DATA_DIR=${DATA_DIR}
     restart: always
+    image: sumanchapai/gw:latest
+    environment:
+      - GW_REPO=/data
+      - GIT_USER_EMAIL=${GIT_USER_EMAIL}
+      - GIT_USER_NAME=${GIT_USER_NAME}
+      - GITHUB_USERNAME=${GITHUB_USERNAME}
+      - GITHUB_REPO=${GITHUB_REPO}
+      - GITHUB_REPO_TOKEN=${GITHUB_REPO_TOKEN}
+      - RESTRICTED_COMMANDS=${RESTRICTED_COMMANDS}
+      - BACK_LINK=${BACK_LINK}
+      - GIT_PAGE_TITLE=${TITLE}
+      - HOST=${HOST}
     volumes:
-      - ./git:/app
       - ${DATA_DIR}:/data
     depends_on:
       - fava
 
-  # reverse-proxy:
-  #   image: nginx:latest
-  #   restart: always
-  #   ports:
-  #     - "${PORT}:80"
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-  #   depends_on:
-  #     - fava
-  #     - git
+  reverse-proxy:
+    image: nginx:latest
+    restart: always
+    environment:
+      - PORT=${PORT}
+    ports:
+      - "${PORT}:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - fava
+      - git
