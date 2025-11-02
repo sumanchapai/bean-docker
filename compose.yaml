@@ -23,6 +23,7 @@ services:
       - BACK_LINK=/
       - GIT_PAGE_TITLE=${BUSINESS_NAME}
       - BACK_LINK=/
+      - BASE_PATH=/git
     volumes:
       - ${DATA_DIR}:/data
     depends_on:

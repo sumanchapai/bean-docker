@@ -54,7 +54,7 @@ option "operating_currency" "NPR"
   precision: 2
 
 ; Add link to sidebar
-1970-01-01 custom "fava-sidebar-link" "Git" "/git"
+1970-01-01 custom "fava-sidebar-link" "Git" "/git/"
 
 ;;; Include files
 include "$ACCOUNTS_FILE"
