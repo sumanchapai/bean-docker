@@ -3,12 +3,6 @@ set -euo pipefail
 
 DIR="/app/data"
 
-# Ensure that the data directory exists and is empty
-if [ ! -d "$DIR" ]; then
-  echo "❌ $DIR does not exist"
-  exit 1
-fi
-
 # Create documents directory
 mkdir -p  /app/data/documents
 mkdir -p /app/data/journals
@@ -17,6 +11,7 @@ YEAR=$(date +%Y)
 
 ACCOUNTS_FILE="accounts.bean"
 
+# Create accounts file if it doesn't 
 if [ ! -e "$ACCOUNTS_FILE" ]; then
 cat > "$ACCOUNTS_FILE" <<EOF
 1970-01-01 open Assets:Cash
@@ -26,6 +21,7 @@ fi
 
 YEAR_FILE="journals/${YEAR}.bean"
 
+# Create journal file for the current year (if it doesn't exist already)
 if [ ! -e "$YEAR_FILE" ]; then
 cat > "$YEAR_FILE" <<EOF
 ;
@@ -38,6 +34,7 @@ fi
 # Create the main.beancount file
 MAIN_BEAN_FILE="${DIR}/main.bean"
 
+# Create main.bean file it it doesn't exist
 if [ ! -e "$MAIN_BEAN_FILE" ]; then
 cat > "$MAIN_BEAN_FILE" <<EOF
 option "title" "$BUSINESS_NAME"
