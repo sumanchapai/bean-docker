@@ -17,9 +17,12 @@ This docker image bundles two services:
 1. GW (Web interface that provides basic Git and functionalities)
 
 ![Fava running on the root route](images/fava-home.png)
+**Fava running on th root route**
+
 ![Git Web (GW) running on /git route](images/gw.png)
 
 If you want to create a project, here are the steps:
+**Git Web (GW) running on the `/git` route**
 
 1. Have Docker installed in your system.
 1. Clone or download this repo.
