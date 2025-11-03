@@ -25,8 +25,9 @@ This docker compose bundles two services and uses an nginx reverse proxy to serv
 If you want to create a project, here are the steps:
 
 1. Have Docker installed in your system.
-1. Create a file named `compose.yaml` (preferably in an empty repo) and copy the contents from [compose.yaml](./compose.yaml).
-1. Create a `.env` file (alongside `compose.yaml`) with contents from [.env.example](./env.example) and update the environment variables
-   as necessary. You can find instructions on how to set github repo token [here](https://github.com/sumanchapai/gw?tab=readme-ov-file#generating-github-token).
+1. Create a file named `compose.yaml` (preferably in an empty folder) and copy the contents from [compose.yaml](./compose.yaml).
+1. Create a `.env` file (alongside `compose.yaml`) with contents from [.env.example](.env.example) and update the environment variables
+   as necessary. You can find instructions on how to set github repo token [here](https://github.com/sumanchapai/gw?tab=readme-ov-file#generating-github-token)
+   which is needed for you to be able to push to github.
 1. Run `docker compose up` and you should have your beancount ready to use with git support at
    `localhost:8063` or whatever port you've defined in the environment file.
