@@ -31,3 +31,8 @@ If you want to create a project, here are the steps:
    which is needed for you to be able to push to github.
 1. Run `docker compose up` and you should have your beancount ready to use with git support at
    `localhost:8063` or whatever port you've defined in the environment file.
+
+### Environment Variables
+
+Check the [`.env.example`](.env.example) file which is supposed to provide
+enough documentation for the environment variables that you'll need to set.

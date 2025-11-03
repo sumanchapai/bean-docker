@@ -63,4 +63,10 @@ include "$YEAR_FILE"
 EOF
 fi
 
+# Create the main.beancount file
+GITIGNORE="${DIR}/.gitignore"
+
+# Append .env to the gitignore file
+echo ".env" >> "$GITIGNORE"
+
 exec "$@"
