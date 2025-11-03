@@ -16,7 +16,7 @@ This docker image bundles two services:
 1. Fava (Web based GUI for beancount)
 1. GW (Web interface that provides basic Git and functionalities)
 
-**Fava running on th root route:**
+**Fava running on the root route:**
 ![Fava running on the root route](images/fava-home.png)
 
 **Git Web (GW) running on the `/git` route:**
