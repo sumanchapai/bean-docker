@@ -1,8 +1,7 @@
 services:
   fava:
     restart: always
-    build:
-      context: ./fava
+    image: sumanchapai/bean-docker:latest
     environment:
       - DATA_DIR=${DATA_DIR}
       - BUSINESS_NAME=${BUSINESS_NAME:-My Business}
