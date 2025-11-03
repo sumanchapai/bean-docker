@@ -13,8 +13,8 @@ easy backup from a website, i.e. without you having to go to the command line or
 
 This docker image bundles two services:
 
-1. Fava (Web based GUI for beancount)
-1. GW (Web interface that provides basic Git and functionalities)
+1. [Fava](https://github.com/beancount/fava) (Web based GUI for beancount)
+1. GW(https://github.com/sumanchapai/gw) (Web interface that provides basic Git and functionalities)
 
 **Fava running on the root route:**
 ![Fava running on the root route](images/fava-home.png)
