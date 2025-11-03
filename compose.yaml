@@ -4,7 +4,7 @@ services:
     image: sumanchapai/bean-docker:latest
     environment:
       - DATA_DIR=${DATA_DIR}
-      - BUSINESS_NAME=${BUSINESS_NAME:-My Business}
+      - BUSINESS_NAME=${TITLE:-Untitled}
     volumes:
       - ${DATA_DIR}:/app/data
 
@@ -20,7 +20,7 @@ services:
       - GITHUB_REPO_TOKEN=${GITHUB_REPO_TOKEN}
       - RESTRICTED_COMMANDS=${RESTRICTED_COMMANDS}
       - BACK_LINK=/
-      - GIT_PAGE_TITLE=${BUSINESS_NAME}
+      - GIT_PAGE_TITLE=${TITLE}
       - BACK_LINK=/
       - BASE_PATH=/git
     volumes:
