@@ -11,7 +11,7 @@ to also reap the benefits of beancount by providing a docker image for easy inst
 with a basic git server where you can run basic git commands as well as push your changes to github for
 easy backup from a website, i.e. without you having to go to the command line or some code editing software.
 
-This docker image bundles two services:
+This docker compose bundles two services and uses an nginx reverse proxy to serve them both on the same host:port under different paths:
 
 1. [Fava](https://github.com/beancount/fava) (Web based GUI for beancount)
 1. GW(https://github.com/sumanchapai/gw) (Web interface that provides basic Git and functionalities)
