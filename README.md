@@ -29,6 +29,7 @@ If you want to create a project, here are the steps:
 1. Create a `.env` file (alongside `compose.yaml`) with contents from [.env.example](.env.example) and update the environment variables
    as necessary. You can find instructions on how to set github repo token [here](https://github.com/sumanchapai/gw?tab=readme-ov-file#generating-github-token)
    which is needed for you to be able to push to github.
+1. Create a file called `nginx.conf` and copy the contents from [nginx.conf](./nginx.conf) into it.
 1. Run `docker compose up` and you should have your beancount ready to use with git support at
    `localhost:8063` or whatever port you've defined in the environment file.
 
