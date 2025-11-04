@@ -66,7 +66,14 @@ fi
 # Create the main.beancount file
 GITIGNORE="${DIR}/.gitignore"
 
-# Append .env to the gitignore file
-echo ".env" >> "$GITIGNORE"
+# Create the .gitignore file if it doesn't exist
+touch "$GITIGNORE"
 
+# Append .env only if it's not already in the file
+if ! grep -qxF ".env" "$GITIGNORE"; then
+  echo ".env" >> "$GITIGNORE"
+  echo "Added .env to .gitignore"
+else
+  echo ".env already present in .gitignore"
+fi
 exec "$@"
