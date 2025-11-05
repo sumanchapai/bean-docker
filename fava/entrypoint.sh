@@ -76,4 +76,20 @@ if ! grep -qxF ".env" "$GITIGNORE"; then
 else
   echo ".env already present in .gitignore"
 fi
+
+if ! grep -qxF ".DS_Store" "$GITIGNORE"; then
+  echo ".DS_Store" >> "$GITIGNORE"
+  echo "Added .DS_Store to .gitignore"
+else
+  echo ".DS_Store already present in .gitignore"
+fi
+
+if ! grep -qxF "documents/" "$GITIGNORE"; then
+  echo "documents/" >> "$GITIGNORE"
+  echo "Added documents/ to .gitignore"
+else
+  echo "documents/ already present in .gitignore"
+fi
+
+
 exec "$@"
