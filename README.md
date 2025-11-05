@@ -37,3 +37,11 @@ If you want to create a project, here are the steps:
 
 Check the [`.env.example`](.env.example) file which is supposed to provide
 enough documentation for the environment variables that you'll need to set.
+
+By default, your server will listen on all interfaces meaning that others connected
+to the same network (Wifi) as you will be able to access your server by your IP:PORT
+web address. If you want to run only in localhost, change your PORT by prepending local IP as follows:
+
+```.env
+PORT=127.0.0.1:8063
+```
