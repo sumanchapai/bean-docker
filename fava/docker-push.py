@@ -47,13 +47,10 @@ if not new_version:
 with open(version_file, "w") as fd:
     fd.write(new_version)
 
-# Docker build and push commands
-ask_and_run_cmd(f"docker build -t {local_docker_image_name}:{new_version} .")
 ask_and_run_cmd(
-    f"docker tag {local_docker_image_name}:{new_version} {remote_docker_image_name}:{new_version}"
+    f"docker buildx build "
+    f"--platform linux/amd64,linux/arm64 "
+    f"-t {remote_docker_image_name}:{new_version} "
+    f"-t {remote_docker_image_name}:latest "
+    f"--push ."
 )
-ask_and_run_cmd(
-    f"docker tag {local_docker_image_name}:{new_version} {remote_docker_image_name}:latest"
-)
-ask_and_run_cmd(f"docker push {remote_docker_image_name}:{new_version}")
-ask_and_run_cmd(f"docker push {remote_docker_image_name}:latest")
